@@ -8,4 +8,8 @@ rl.on('line', lineString => {
     const year = parseInt(columns[0]);
     const prefecture = columns[1];
     const popu = parseInt(columns[3]);
+
+    console.log(year);
+    console.log(prefecture);
+    console.log(popu);
 });
