@@ -27,6 +27,6 @@ rl.on('line', lineString => {
         prefectureDataMap.set(prefecture, value)
     }
 });
-rl.on('clone', () => {
+rl.on('close', () => {
     console.log(prefectureDataMap);
 });
