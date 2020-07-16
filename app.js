@@ -2,10 +2,10 @@
 const fs = require('fs'); // File System
 const readline = require('readline');
 const rs = fs.createReadStream('./popu-pref.csv');
-const rl = readline.createInterface({input: rs, output: {} });
+const rl = readline.createInterface({ input: rs, output: {} });
 const prefectureDataMap = new Map(); // key: Prefecture value: objects of the sum data
 rl.on('line', lineString => {
-    const  columns = lineString.split(',');
+    const columns = lineString.split(',');
     const year = parseInt(columns[0]);
     const prefecture = columns[1];
     const popu = parseInt(columns[3]);
@@ -31,5 +31,8 @@ rl.on('close', () => {
     for (let [key, value] of prefectureDataMap) {
         value.change = value.popu15 / value.popu10;
     }
-    console.log(prefectureDataMap);
+    const rankingArray = Array.from(prefectureDataMap).sort((pair1, pair2) => {
+        return pair2[1].change - pair1[1].change;
+    });
+    console.log(rankingArray);
 });
